@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Problem Solving with Linear Regression</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #333;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            padding: 5px;
+            display: block;
+            margin: 10px 0;
+            margin-left: 20px;
+            color: #333;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 10px auto;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1> <a href="https://www.kaggle.com/code/meetshah6338/titanicnotebook"> Titanic Problem Solving with Linear Regression </a> </h1>
+
+        <p>The sinking of the Titanic was a tragic event in history. In this blog post, we'll explore how we can use linear regression to analyze the Titanic dataset and make predictions about the likelihood of survival based on various features.</p>
+
+        <h2>Introduction</h2>
+
+        <p>Linear regression is a powerful tool in statistics and machine learning that allows us to understand the relationship between a dependent variable (in this case, survival) and one or more independent variables (such as age, class, fare, etc.).</p>
+
+        <h2>Getting Started</h2>
+
+        <h3> 1. Preprocessing the Dataset</h3>
+
+        <h5>&emsp; a. Checking for null values if found then repalce it by it's mean value. </h5>
+        <h5>&emsp; b. Droping the non use columns.</h5>
+        <h5>&emsp; C. Normalize the all features present in the dataset. </h5>
+
+
+        <h3>2. Some Analysis</h3>
+
+        <table>
+            <tr>
+                <th>Pclass</th>
+                <th>Survived</th>
+                <th>Count</th>
+            </tr>
+            <tr>
+                <td rowspan="2">1</td>
+                <td>0</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>136</td>
+            </tr>
+            <tr>
+                <td rowspan="2">2</td>
+                <td>0</td>
+                <td>97</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>87</td>
+            </tr>
+            <tr>
+                <td rowspan="2">3</td>
+                <td>0</td>
+                <td>372</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>119</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>Sex</th>
+                <th>Survived</th>
+                <th>Count</th>
+            </tr>
+            <tr>
+                <td rowspan="2">0 (Female)</td>
+                <td>0</td>
+                <td>81</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>223</td>
+            </tr>
+            <tr>
+                <td rowspan="2">1 (male)</td>
+                <td>0</td>
+                <td>468</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>109</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>Fare</th>
+                <th>Survived</th>
+                <th>Count</th>
+            </tr>
+            <tr>
+                <td rowspan="2">1</td>
+                <td>0</td>
+                <td>179</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>44</td>
+            </tr>
+            <tr>
+                <td rowspan="2">2</td>
+                <td>0</td>
+                <td>150</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>67</td>
+            </tr>
+            <tr>
+                <td rowspan="2">3</td>
+                <td>0</td>
+                <td>127</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>102</td>
+            </tr>
+            <tr>
+                <td rowspan="2">4</td>
+                <td>0</td>
+                <td>93</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>129</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>Age</th>
+                <th>Survived</th>
+                <th>Count</th>
+            </tr>
+            <tr>
+                <td rowspan="2">1</td>
+                <td>0</td>
+                <td>133</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>98</td>
+            </tr>
+            <tr>
+                <td rowspan="2">2</td>
+                <td>0</td>
+                <td>95</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>58</td>
+            </tr>
+            <tr>
+                <td rowspan="2">3</td>
+                <td>0</td>
+                <td>187</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>103</td>
+            </tr>
+            <tr>
+                <td rowspan="2">4</td>
+                <td>0</td>
+                <td>134</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>83</td>
+            </tr>
+        </table>
+
+        <h3>3. Building and Analysize with different Models</h3>
+
+        <h5>&emsp; a. Linear Regression. </h5>
+
+        <p>&emsp; Build up the model. </p>
+
+        <code>
+        regressor = linear_model.LinearRegression()<br>
+        regressor.fit(X, y)
+    </code>
+
+        <p>&emsp; Predict the answers from train model. </p>
+
+        <code>
+        predict = regressor.predict(X)
+    </code>
+
+        <h5>&emsp; b. Logistic Regression.</h5>
+
+        <p>&emsp; Build up the model. </p>
+
+        <code>
+        logistic_regression = LogisticRegression(random_state=16)<br>
+        logistic_regression.fit(X, y)
+    </code>
+
+        <p>&emsp; Predict the answers from train model. </p>
+
+        <code>
+        y_pred = logistic_regression.predict(X_test)
+    </code>
+
+
+        <h5>&emsp; C. Decision Tree. </h5>
+
+        <p>&emsp; Build up the model. </p>
+
+        <code>
+        decision_tree = DecisionTreeClassifier()<br>
+        decision_tree.fit(X, y)
+    </code>
+
+        <p>&emsp; Predict the answers from train model. </p>
+
+        <code>
+        y_pred = decision_tree.predict(X_test)
+    </code>
+
+        <h5>&emsp; d. Random Forest Tree. </h5>
+
+        <p>&emsp; Build up the model. </p>
+
+        <code>
+        RF_model = RandomForestClassifier (n_estimators=50, max_depth=7, random_state=1)<br>
+        RF_model.fit(X, y)
+    </code>
+
+        <p>&emsp; Predict the answers from train model. </p>
+
+        <code>
+        y_pred = RF_model.predict(X_test)
+    </code>
+
+        <p>&emsp; "Up until now, the system has achieved an efficiency ranging from 74% to 76% across the four models as discussed above." </p>
+
+        <p>&emsp; To improve the score, we will implement the following strategies: </p>
+
+        <h5>&emsp;&emsp; I. Split dataset into 3 parts </h5>
+        <h5>&emsp;&emsp;&emsp;&emsp; ~ train dataset</h5>
+        <h5>&emsp;&emsp;&emsp;&emsp; ~ dev dataset</h5>
+        <h5>&emsp;&emsp;&emsp;&emsp; ~ test dataset</h5>
+
+        <h5>&emsp;&emsp; II. Try different hyperparameters </h5>
+
+        <h5>&emsp;&emsp; III. Try different optimizers </h5>
+        <h5>&emsp;&emsp;&emsp;&emsp; ~ sdg optimizer</h5>
+        <h5>&emsp;&emsp;&emsp;&emsp; ~ adam optimizer</h5>
+        <h5>&emsp;&emsp;&emsp;&emsp; ~ lbfgs optimizer</h5>
+
+        <h5>&emsp; e. Neural Network. </h5>
+
+        <p>&emsp; After experimenting with different optimizers and varying hyperparameters, we ultimately identified the most effective combination that significantly improved the efficiency of our predictions. </p>
+
+        <p>&emsp; Build up the model. </p>
+
+        <code>
+        clf = MLPClassifier(hidden_layer_sizes=(10,), solver='lbfgs', activation='relu', alpha=1e-4, random_state=7)<br>
+        clf.fit(X_train, y_train)
+    </code>
+
+        <p>&emsp; Utilize the trained model to predict answers for the development dataset, then assess the model's accuracy through evaluation. </p>
+
+        <code>
+        y_pred = clf.predict(X_dev)<br>
+        accuracy = accuracy_score(y_dev, y_pred)
+    </code>
+
+        <p>&emsp; Accuracy: 81.56%. </p>
+
+        <p>&emsp; Predict the answers from train model. </p>
+
+        <code>
+        y_pred = clf.predict(X_test)
+    </code>
+
+
+        <h2>Conclusion</h2>
+
+        <p>Using linear regression, we can gain valuable insights into the factors that influenced the survival of passengers on the Titanic. This is just one example of how machine learning techniques can be applied to historical datasets to extract meaningful
+            information.</p>
+
+
+    </div>
+</body>
+
+</html>
