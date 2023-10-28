@@ -33,6 +33,17 @@
             color: #333;
         }
 
+        codex {
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            padding: 5px;
+            display: block;
+            margin: 10px 0;
+            margin-left: 20px;
+            margin-right: 30px;
+            color: #333;
+        }
+
         table {
             border-collapse: collapse;
             width: 50%;
@@ -73,6 +84,7 @@
 
         <h3>2. Some Analysis</h3>
 
+
         <table>
             <tr>
                 <th>Pclass</th>
@@ -108,6 +120,10 @@
             </tr>
         </table>
 
+        <center>
+            <h5> a. Pclass v/s Survived Analysis. </h5>
+        </center><br>
+
         <table>
             <tr>
                 <th>Sex</th>
@@ -133,6 +149,10 @@
                 <td>109</td>
             </tr>
         </table>
+
+        <center>
+            <h5> b. Sex v/s Survived Analysis. </h5>
+        </center> <br>
 
         <table>
             <tr>
@@ -178,6 +198,10 @@
             </tr>
         </table>
 
+        <center>
+            <h5> c. Fare v/s Survived Analysis. </h5>
+        </center> <br>
+
         <table>
             <tr>
                 <th>Age</th>
@@ -222,7 +246,62 @@
             </tr>
         </table>
 
-        <h3>3. Building and Analysize with different Models</h3>
+        <center>
+            <h5> d. Age v/s Survived Analysis. </h5>
+        </center> <br>
+
+        <h3> 3. Glimpse of preprocessed and normalized dataset.</h3>
+
+        <codex>
+            traindf.head()
+        </codex>
+
+        <table>
+            <tr>
+                <th>Survived</th>
+                <th>Pclass</th>
+                <th>Sex</th>
+                <th>Age</th>
+                <th>Fare</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>3</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>4</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>3</td>
+                <td>0</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>3</td>
+                <td>1</td>
+                <td>3</td>
+                <td>2</td>
+            </tr>
+        </table><br>
+
+        <h3> 4. Building and Analysize with different Models</h3>
 
         <h5>&emsp; a. Linear Regression. </h5>
 
@@ -328,10 +407,11 @@
     </code>
 
 
-        <h2>Conclusion</h2>
+        <h3> 5. Conclusion</h3>
 
         <p>Using linear regression, we can gain valuable insights into the factors that influenced the survival of passengers on the Titanic. This is just one example of how machine learning techniques can be applied to historical datasets to extract meaningful
-            information.</p>
+            information.
+        </p>
 
 
     </div>
