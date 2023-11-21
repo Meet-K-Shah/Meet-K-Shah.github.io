@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Classification with TPU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #3498db;
+        }
+
+        h2 {
+            color: #2ecc71;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        pre {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Flower Classification with TPU</h1>
+   
+    <img src="input.webp" alt="TPU Image" style="max-width: auto; height: auto;">
+
+    <p>Deep Learning Classification models help us accurately classify the flower species from different 104 flowers type. </p>
+
+    <h2>Building a Flower Classification Model</h2>
+
+    <p>In the "Petals to the Metal — Flower Classification on TPU" Kaggle competition, I successfully undertook the challenge of constructing a image classifier model designed to classify 104 distinct types of flowers using their images. This blog provides an overview of the notebook I created for the purpose of image classification. I have referenced [1] to build initial model.<br><br>Lets dive in, we start with introducing the key points for building our model.
+    </p>
+
+    <h2>Essential Points to Improve Classification Model Accuracy</h2>
+
+    <ul>
+        <li>Input image size</li>
+        <li>Pretrained model and number of trainable parameters of the final model</li>
+        <li>Tuning hyper parameters</li>
+        <li>Use of learning rate schedule</li>
+    </ul>
+
+    <h2>Steps To Be Followed:</h2>
+
+    <pre>
+        Step 0: Import Libraries
+        Step 1: Distribution Strategy
+        Step 2: Loading The Competition Data
+        Step 3: Loading Data (Setting up the parameters)
+        Step 4: Defining The Model
+        Step 5: Tuning the hyper-parameters
+    </pre>
+
+
+    <h2>Importing Libraries</h2>
+
+    <pre>
+        <code>
+        import tensorflow as tf
+        from tensorflow.keras import layers, models
+        from kaggle_datasets import KaggleDatasets
+        import numpy as np
+        import pandas as pd
+        import os
+        </code>
+    </pre>
+   
+    <p>Setting up the parameters</p>
+   
+    <p>In our analysis, we leverage various image sizes provided within datasets to determine the optimal size for achieving the highest accuracy in our outputs.
+        <br>Note: It's noteworthy that selecting an image size of 512x512 results in a memory overflow issue.
+    </p>
+   
+    <pre>
+        <code>
+        AUTO = tf.data.experimental.AUTOTUNE
+
+
+        #IMAGE_SIZE = [512, 512] # at this size, a GPU will run out of memory.
+        IMAGE_SIZE = [331, 331]
+        EPOCHS = 5
+        BATCH_SIZE = 16 * strategy.num_replicas_in_sync
+       
+        NUM_TRAINING_IMAGES = 12753
+        NUM_TEST_IMAGES = 7382
+        STEPS_PER_EPOCH = NUM_TRAINING_IMAGES // BATCH_SIZE
+        </code>
+    </pre>
+
+    <p>Loading The Competition Data</p>
+
+    <p><strong>Get GCS Path</strong></p>
+
+    <p>When used with TPUs, datasets need to be stored in a Google Cloud Storage bucket. Retrieve the GCS path for this competition’s dataset:</p>
+
+    <pre>
+        <code>
+            GCS_DS_PATH = KaggleDatasets().get_gcs_path()
+        </code>
+    </pre>
+
+    <h2>Loading Data (Setting up the parameters)</h2>
+
+    <pre>
+        <code>
+    def decode_image(image_data):
+        image = tf.image.decode_jpeg(image_data, channels=3)
+        image = tf.cast(image, tf.float32) / 255.0  
+        image = tf.reshape(image, [*IMAGE_SIZE, 3])
+        return image
+   
+    def read_labeled_tfrecord(example):
+        LABELED_TFREC_FORMAT = {
+            "image": tf.io.FixedLenFeature([], tf.string),
+            "class": tf.io.FixedLenFeature([], tf.int64),  
+        }
+        example = tf.io.parse_single_example(example, LABELED_TFREC_FORMAT)
+        image = decode_image(example['image'])
+        label = tf.cast(example['class'], tf.int32)
+        return image, label
+   
+    def read_unlabeled_tfrecord(example):
+        UNLABELED_TFREC_FORMAT = {
+            "image": tf.io.FixedLenFeature([], tf.string),
+            "id": tf.io.FixedLenFeature([], tf.string),
+           
+        }
+        example = tf.io.parse_single_example(example, UNLABELED_TFREC_FORMAT)
+        image = decode_image(example['image'])
+        idnum = example['id']
+        return image, idnum
+   
+    def load_dataset(filenames, labeled=True, ordered=False):
+   
+        ignore_order = tf.data.Options()
+        if not ordered:
+            ignore_order.experimental_deterministic = False
+           
+        dataset = tf.data.TFRecordDataset(filenames, num_parallel_reads = AUTO)
+        dataset = dataset.with_options(ignore_order) # uses data as soon as it streams in, rather than in its original order
+        dataset = dataset.map(read_labeled_tfrecord if labeled else read_unlabeled_tfrecord)
+       
+        return dataset
+       
+        </code>
+    </pre>
+   
+    <pre>
+        <code>
+           
+    def get_training_dataset():
+        dataset = load_dataset(tf.io.gfile.glob(GCS_DS_PATH + '/tfrecords-jpeg-331x331/train/*.tfrec'), labeled=True)
+        dataset = dataset.repeat()
+        dataset = dataset.shuffle(2048)
+        dataset = dataset.batch(BATCH_SIZE)
+        dataset = dataset.prefetch(AUTO)
+        return dataset
+   
+    def get_validation_dataset():
+        dataset = load_dataset(tf.io.gfile.glob(GCS_DS_PATH + '/tfrecords-jpeg-331x331/val/*.tfrec'), labeled=True, ordered=False)
+        dataset = dataset.batch(BATCH_SIZE)
+        dataset = dataset.cache()
+        dataset = dataset.prefetch(AUTO)
+        return dataset
+   
+    def get_test_dataset(ordered=False):
+        dataset = load_dataset(tf.io.gfile.glob(GCS_DS_PATH + '/tfrecords-jpeg-331x331/test/*.tfrec'), labeled=False, ordered=ordered)
+        dataset = dataset.batch(BATCH_SIZE)
+        dataset = dataset.prefetch(AUTO)
+        return dataset
+
+    training_dataset = get_training_dataset()
+    validation_dataset = get_validation_dataset()
+        </code>
+    </pre>
+
+    <h2>Building a Model</h2>
+   
+    <p>In my exploration, I implemented both the Keras application VGG16 and MobileNetV2. Notably, MobileNetV2 yielded superior accuracy in comparison. Additionally, I conducted experiments with various optimizers, loss functions, and metrics, revealing that the configurations listed below offer enhanced efficiency. For more information...</p>
+   
+    <pre>
+        <code>
+           
+    with strategy.scope():    
+        pretrained_model = tf.keras.applications.MobileNetV2(weights='imagenet', include_top=False ,input_shape=[*IMAGE_SIZE, 3])
+        pretrained_model.trainable = False
+       
+        model = tf.keras.Sequential([
+            pretrained_model,
+            tf.keras.layers.GlobalAveragePooling2D(),
+            tf.keras.layers.Dense(104, activation='softmax')
+        ])
+           
+    model.compile(
+        optimizer = 'adam',
+        loss = 'sparse_categorical_crossentropy',
+        metrics = ['accuracy']
+    )
+   
+    historical = model.fit(training_dataset,
+              steps_per_epoch=STEPS_PER_EPOCH,
+              epochs=EPOCHS,
+              validation_data=validation_dataset)
+             
+        </code>
+    </pre>
+
+    <h2>Tuning the training Data</h2>
+   
+    <pre>
+        <code>
+           
+    fine_tune_epochs = 5  
+    total_epochs = EPOCHS + fine_tune_epochs
+   
+    historical_fine = model.fit(
+        training_dataset,
+        steps_per_epoch=STEPS_PER_EPOCH,
+        epochs=total_epochs,
+        initial_epoch=historical.epoch[-1],
+        validation_data=validation_dataset
+    )
+             
+        </code>
+    </pre>
+   
+    <p>I have utilized the provided code in conjunction with supplementary material from Refrence [1] notebook to enhance data proficiency. For a more in-depth comprehension of ensemble learning and the augmentation of external datasets, I recommend visiting Refrence [1] notebook. Find my raw Kaggle Notebook <a href="https://www.kaggle.com/code/meetshah6338/petals-to-the-metals/notebook">here</a><br><br></p>
+    
+    <h2>References</h2>
+    
+    <p>[1] Main reference to the images to a list —<br>
+    &nbsp;&nbsp;<a href="https://www.kaggle.com/code/cdeotte/rotation-augmentation-gpu-tpu-0-96">https://www.kaggle.com/code/cdeotte/rotation-augmentation-gpu-tpu-0-96</a><br><br>
+    [2] Kaggle Competitions description —<br>
+    &nbsp;&nbsp;<a href="https://www.kaggle.com/competitions/tpu-getting-started/overview">https://www.kaggle.com/competitions/tpu-getting-started/overview</a><br><br>
+    [3] Keras MobileNetV2 —<br>
+    &nbsp;&nbsp;<a href="https://www.tensorflow.org/api_docs/python/tf/keras/applications/mobilenet_v2/MobileNetV2">https://www.tensorflow.org/api_docs/python/tf/keras/applications/mobilenet_v2/MobileNetV2</a><br><br>
+    
+    </p>
+   
+    <h2>My Contribution</h2>
+
+    <p>I've embarked on implementing a neural network for the classification of flowers, progressively scaling the resolution from 198x198 to 512x512 pixels. Notably, the efficiency of the model has shown improvement with increasing resolution, reaching an accuracy of 85%. However, I encountered a memory overflow issue when attempting to handle images at the maximum resolution of 512x512 pixels. Despite this challenge, the observed incremental gains in accuracy underscore the positive impact of higher resolutions on the model's performance. Addressing the memory issue may involve optimizing the code or exploring hardware resources capable of handling larger image sizes.</p>
+   
+    <p>In addition to the resolution adjustments, I dedicated efforts to fine-tuning hyperparameters, particularly exploring different pre-trained models such as Keras' VGG16 and MobileNetV2. Through meticulous experimentation, I observed that MobileNetV2 significantly outperforms VGG16 in terms of efficiency. This finding highlights the critical role of model selection and hyperparameter tuning in enhancing the overall performance of the neural network for flower classification. The pursuit of optimal hyperparameters contributes to the model's ability to extract meaningful features and achieve higher accuracy.</p>
+   
+    <p>Moreover, I conducted comprehensive experiments encompassing a diverse set of optimizers, loss functions, and metrics. The outcomes of these experiments unveiled that specific configurations, detailed below, not only contribute to improved efficiency but also significantly enhance the overall performance of the model:</p>
+    <ul>
+        <li>Optimizer: 'adam' and 'RMSprop' with learning rate: 1e-4</li>
+        <li>Loss Function: 'sparse_categorical_crossentropy'</li>
+        <li>Metrics: ['accuracy']</li>
+    </ul>
+
+    <p>This systematic exploration of optimization techniques further underscores the iterative and data-driven nature of the model fine-tuning process, ultimately leading to enhanced efficiency and performance in the classification of flowers.</p>
+    
+    <h2>Challenges and Solutions</h2>
+
+    <p><strong>Memory Overflow:</strong> During the experimentation phase with varying sizes of flower images, it became evident that the code encounters memory limitations when handling images with dimensions of 512x512 pixels, both on CPU and GPU. To address this issue, it is imperative to leverage TPU (Tensor Processing Unit) for enhanced computational efficiency and the ability to handle larger image sizes without encountering memory constraints. The transition to TPU is recommended as a viable solution to overcome the challenges posed by memory limitations during code execution.</p>
+   
+    <p><strong>MobileNetV2 model vs VGG16 model: </strong> 
+    Keras provides a selection of pretrained networks, commonly referred to as 'applications,' which can be readily downloaded and integrated into your project. Among these options, MobileNetV2 stands out as a model specifically trained for image classification tasks. General view for implementation of MobileNetV2 model is <a href="https://pythontutorials.eu/deep-learning/image-classification/">here</a>. In my research, I explored the suitability of two models, namely MobileNetV2 and VGG16, for the image classification task at hand.<br><br>
+    The comparative analysis revealed that the MobileNetV2 model outperforms VGG16 in terms of efficiency. This observation aligns with existing research findings, further substantiating the superior performance of MobileNetV2. For a more in-depth understanding of the efficacy comparison between these models, I refer to a specific <a href="/Comparative Study of VGG16 and MobileNetV2 for Masked Face Recognition.pdf">research paper</a> dedicated to this evaluation. The utilization of MobileNetV2 is recommended based on its demonstrated higher efficiency in image classification.</p>
+  
+    
+    <p>Find my raw Kaggle Notebook <a href="https://www.kaggle.com/code/meetshah6338/petals-to-the-metals/notebook">here</a><br><br></p>
+
+
+</body>
+
+</html>
