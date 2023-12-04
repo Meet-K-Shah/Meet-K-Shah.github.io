@@ -4,243 +4,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Homepage</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Flower Classification with TPU</title>
+
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="path/to/bootstrap.min.css">
+
     <style>
-        .horizontal-container {
-            display: flex;
-            justify-content: space-between;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
         }
 
-        .division {
-            flex: 1;
-            padding: 20px;
-            margin: 10px;
+        h1 {
+            color: #3498db;
+            font-size: 38px;
+        }
+
+        h2 {
+            color: #2ecc71;
+            font-size: 33px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 22px;
+        }
+
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 18px;
+        }
+
+        pre {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        
+        img{
+            width: 100%; 
+            height: auto; 
+            max-width: 500px;
+            
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#"> <b> Homepage </b> </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#education">Education</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#experience">Experience</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#project">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#highlights">Highlights</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-		    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <h1>Detecting LLM-Generated Texts</h1>
 
-    <!-- First Section -->
-    <section id="first" class="text-center py-5">
-        <div class="container">
-            <h1> Meet Shah </h1>
-            <p> Data Analytical | Optimist Coder | Problem Solver</p>
-        </div>
-    </section>
+    <img src="bayesian.png" alt="Bayesian" style="max-width: auto; height: auto;">
 
 
-    <!-- About Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Complex problem-solver with analytical and driven mindset. Dedicated to achieving demanding development objectives according to tight schedules while producing impeccable code.</p>
-        </div>
-    </section>
+    <h2>Building a Naive Bayes Classifier Model</h2>
 
-    <!-- Education Section -->
-    <section id="education" class="py-5">
-        <div class="container">
-            <u><h2>Education</h2></u><br>
-            <b>P P Savani University (PPSU) </b> – Gujarat, India &emsp; 2018 – 2022<br>
-            <p>Candidate for B.E. in Compuer Engineering, GPA: 8.52/10</p>
+    <p>The challenge lies in the near impossibility of discerning between human-generated text and that produced by large language models (LLMs). Considering the potential for widespread misinformation, fake news, phishing, and social engineering, it becomes
+        imperative to develop methods for accurately identifying LLM-generated text and verifying its content.<br><br>This article aims to furnish an overview of current methods for detecting generated text and quantifies their probability of success.I
+        have built the model from scratch. For a detailed view, please continue to the blog.
+    </p>
 
-            <b>Sardar Vallabhbhai Patel High School (S.V.P) </b> – Gujarat, India &emsp; 2016 – 2018
-        </div>
-    </section>
+    <h2>Dataset contains:</h2>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-5">
-        <div class="container">
-            <u><h2>Experience</h2></u><br>
-            <b>Data Engineer,  Elite Technocrats </b> – Gujarat, India &ensp; February 2023 – June 2023 <br>
-            <b>Roles & Responsibilities:</b>
-            <p>
-                • Successfully implemented backtest of stocks (e.g., SBIN, BANKNIFTY, TCS, etc) with the various different indicators.<br> • Setup and Configuration exe to automatically trade in stock market.<br> • Create stocks data in minute format.<br>                Environment: Python; Django, polars
-            </p>
+    <ul>
+        <li>train_essay</li>
+        <li>prompt_essay</li>
+        <li>test_essay</li>
+    </ul>
 
-            <b>SRE,  Covered by Sage </b> – Intern, Remote-Work &emsp; August. 2021 – Janary-2021<br>
-            <b>Roles & Responsibilities:</b>
-            <p>
-                • Convert the file/application to images and store to docker file. <br> • Command over functions like Routing, S3 bucket, Lambda function in AWS.<br> • Create an yaml file for Microsoft services.<br> Environment: Linux, AWS, yaml, Docker,
-                Kubernetes
-            </p>
-        </div>
-    </section>
-
-    <!-- Project Section -->
-    <section id="project" class="py-5">
-        <div class="container">
-            <u> <h2>Projects</h2> </u><br>
-            <b>Image Stitching (Panorama Effect)</b>
-            <p>
-                It can combine the segments of different similar images into one big picture as our camera has a limitation to capture an image till some point which can be accomplished by this function.
-            </p>
-
-            <b>Chat Bot (Python | Neural Network | NLP) </b>
-            <p>
-                In this project, Chat-bot can detect similar sets of questions which is in a different format and gives the proper answer to an individual question from users. This bot only gives the details about my university admission, hostel and canteen facilities.
-            </p>
-
-            <b>Face Landmarks (Using Python) </b>
-            <p>
-                It detects a face of a person and creates a point (68 points in total) on boundary of eyes, lips, nose, and face.
-            </p>
+    <p>Presently, the training dataset includes only three AI (LLM) generated essays. To address this limitation, I have incorporated two additional datasets containing essays generated by GPT-3.5 and GPT-4. I have included this additional dataset from reference [1].
+    </p>
 
 
-            <b>Q/A NLP Based System (Python | NLP)</b>
-            <p>
-                Question Answering System in which users have to pass a passage and questions and algorithms finds out the answers from the given passage.
-            </p>
+    <h2>Preprocessing the text</h2>
 
-        </div>
-    </section>
+    <p>In the preprocessing phase, I first remove stop words. Following that, I employ lemmatization instead of stemming. Lastly, I verify whether the words are present in the English dictionary using WordNet.
+    </p>
 
-    <!-- Blog Section -->
-    <section id="blog" class="py-5">
-        <div class="container">
-            <u> <h2>Blogs</h2> </u><br
-					   
-            <p>
-                <a href="https://meet-k-shah.github.io/TitanicNotebook/"> Titanic Blog </a>
-            </p>
+    <h2>Lemmatization</h2>
 
-	    <p>
-                <a href="https://meet-k-shah.github.io/PetalToTheMetalsNotebook/"> Petals To The Metals - Flower Classifications </a>
-            </p>
+    <p>Lemmatization is a natural language processing (NLP) technique that involves reducing words to their base or root form, known as the lemma. The goal of lemmatization is to group together different inflected forms of a word so that they can be analyzed
+        as a single item. This process helps in standardizing and normalizing words, making it easier to analyze and understand the text.<br><br> In English, for example, lemmatization would involve reducing words to their base or dictionary form. For
+        verbs, this often means converting them to their infinitive form, and for nouns, it involves reducing them to their singular form. For instance, the lemma of the word "running" would be "run," and the lemma of "mice" would be "mouse."
+    </p>
 
-	    <p>
-                <a href="https://meet-k-shah.github.io/LLMNotebook/"> LLM (AI) text detector </a>
-            </p>
+    <img src="lemmatization.png" alt="Lemmatization" style="max-width: auto; height: auto;">
 
-        </div>
-    </section>	
+    <h2>Stemming.</h2>
 
-    <!-- Technical Skills Section -->
-    <section id="skills" class="py-5">
-        <div class="container">
-            <u><h2>Technical Skills</h2></u><br>
-            <p>
-                C (Intermediate), JAVA (Beginner), Python (Intermediate) <br> SQL (Intermediate), Fire-base (Intermediate), SqLite (Beginner) <br> ML Algorithms (Beginner)
-            </p>
-        </div>
-    </section>
+    <p>Stemming is a natural language processing (NLP) technique that involves reducing words to their root or base form, called the "stem." The goal of stemming is to simplify words to a common base form, even if that form is not a valid word. This process
+        involves removing prefixes, suffixes, and other affixes from words to obtain the root form.<br><br> For example, if you apply stemming to the words "running" and "runner," the common stem would be "run." Similarly, the stem of "cats" and "cat-like"
+        would be "cat."
+    </p>
 
-    <!-- Carrer Highlights Section -->
-    <section id="highlights" class="py-5">
-        <div class="container">
-            <u><h2>Carrer Highlights</h2></u><br>
-            <p>
-                • Won 2nd price in Blind coding event in tech fest at P P Savani University. <br> • Won first place in the intra-college Table Tennis tournament at the University<br>
-            </p>
-        </div>
-    </section>
+    <img src="stemming.png" alt="Stemming" style="max-width: auto; height: auto;">
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-5">
-        <div class="container">
-          <h2><u>Contact</u></h2>
-			             <div class="horizontal-container">
-              <div class="division">
-                <h5>Get in touch</h5><br>
-                <p> 
-                  <a href="https://www.google.com/maps/place/412+Summit+Ave,+Arlington,+TX+76013/"> 412 Summit Ave </a> <br>
-                  <a href="https://www.google.com/maps/place/412+Summit+Ave,+Arlington,+TX+76013/"> Arlington, Texas 76013 </a>
-                  </p>
-                  <div class="icons">
-                      &emsp; <a href="https://www.linkedin.com/in/meetshah6338" target="_blank" class="linkedin-icon"><i class="fab fa-linkedin"></i></a> |
-                      <a href="resume.pdf" download class="resume-icon"><i class="far fa-file-pdf"></i></a> |
-                      <a href="mailto:meetks143@gmail.com"><i class="far fa-envelope"></i></a>
-                  </div>
-              </div>
-              <div class="division">
-                <h5>Send me a message</h5><br>
-                  <form onsubmit="return validateForm()" action="mailto:iameet6338@email.com" method="post" enctype="text/plain">
-                      <label for="name">Name:</label>
-                      <input type="text" id="name" name="name"><br>
-                      <span id="nameError" class="error"></span><br>
 
-                      <label for="email">Email:</label>
-                      <input type="email" id="email" name="email"><br>
-                      <span id="emailError" class="error"></span><br>
+    <p>Subsequently, I consolidated all the text from student-written essays and LLM (AI) generated essays separately. Then, I counted the frequency of each unique word and stored the results in a dataframe.</p>
 
-                      <input type="submit" value="Submit">
-                  </form>
-              </div>
-          </div>
-        </div>
-    </section>
+    <pre>
+        <code>
+        Student_essays = Student_essays.group_by('prompt_id').agg(
+            pl.col('text').str.concat()
+        )
+        Student_essays = Student_essays.with_columns(
+            pl.col('text').map_elements(lambda x: preprocess_text(x))
+        )
+        </code>
+    </pre>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <pre>
+        <code>
+        # Extract unique words and count frequencies for each category
+        Student_unique_words = set()
+        for text in Student_essays['text']:
+            Student_unique_words.update(set(text.to_list()))
 
-    <script>
-        function validateForm() {
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
+        Student_word_counts = {word: [] for word in Student_unique_words}
+        for text in Student_essays['text']:
+            Student_counts = dict(Counter(text.to_list()))
+            for word in Student_unique_words:
+                Student_word_counts[word].append(Student_counts.get(word, 0))
+        </code>
+    </pre>
 
-            var nameError = document.getElementById("nameError");
-            var emailError = document.getElementById("emailError");
+    <h2>Loading Data (Setting up the parameters)</h2>
 
-            nameError.innerHTML = "";
-            emailError.innerHTML = "";
+    <pre>
+        <code>
+        Student_num_columns = 2
 
-            if (name == "") {
-                nameError.innerHTML = "Name is required.";
-                return false;
-            }
+        # Convert the dictionary to a list of tuples
+        Student_word_tuples = [(word, *values) for word, values in Student_word_counts.items()]
+        
+        # Create column names dynamically
+        Student_column_names = ['Words'] + [f'prompt_id_{i}' for i in range(2)]
+        
+        # Create a Polars DataFrame
+        Student_essays = pl.DataFrame(Student_word_tuples, schema=Student_column_names)
+        Student_essays.sort('Words')
+        
+        Student_essays_prob = Student_essays.with_columns(
+            [pl.col(f'prompt_id_{i}').truediv(Student_total_words[i]).round(10) for i in range(Student_num_columns)]
+        )
+       
+        </code>
+    </pre>
+    
+    <p>Same for LLM essays dataset</p>
+    
+    <img src="Student_essays.png" alt="Student Essays" style="max-width: auto; height: auto;">
+    
+    <h2>Naive Bayes Classifier</h2>
 
-            if (email == "") {
-                emailError.innerHTML = "Email is required.";
-                return false;
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                emailError.innerHTML = "Invalid email address.";
-                return false;
-            }
+    <img src="naive_bayes.png" alt="naive bayes classifier" style="max-width: auto; height: auto;">
+    
+    <p>The Naive Bayes Classifier is a probabilistic machine learning algorithm based on Bayes' theorem. It assumes independence between features, hence "naive." It's commonly used for classification tasks, such as spam filtering, sentiment analysis, and document categorization. The algorithm calculates the probability of a given instance belonging to a particular class and selects the class with the highest probability.</p>
+    
+    <h2>Laplace Smoothing</h2>
+    
+    <p>An additional issue to be mindful of is that, since naïve Bayes relies on the product of feature probabilities conditioned on each class, a significant problem arises when new data introduces a feature value that never occurs for one or more levels of a response class. This situation leads to P(xi|Ck) = 0 for the individual feature, causing the zero probability to propagate through the entire multiplication of all features and invariably resulting in a posterior probability of zero for that class.<br><br>
 
-            return true;
-        }
-    </script>
+    A solution to this predicament involves implementing the Laplace smoother. The Laplace smoother adds a small number to each of the counts in the frequencies for each feature, ensuring that each feature has a nonzero probability of occurring for each class. Typically, a value of one to two for the Laplace smoother is sufficient, but this constitutes a tuning parameter that should be considered and optimized through cross-validation.</p>
+    
+    <img src="after_smoothing.png" alt="Student Essays" style="max-width: auto; height: auto;">
+    
+    <p><strong>All the zero values are transformed to a non-zero value, ensuring that the entire multiplication term cannot be zero.</strong></p>
+    
+    <h2> Probability Calculation for Naive Bayes Model</h2>
+    
+    <pre>
+        <code>
+           
+        def calculate_probability(test_str, prompt_id):
+            numerator = Decimal(1)
+            for word in test_str:
+                filter_df = LLM_essays_prob.filter(LLM_essays_prob['Words'] == word)
+                if not filter_df.is_empty():
+                    numerator = numerator * Decimal(filter_df[0,prompt_id+1])
+            numerator = numerator * Decimal(LLM_probability[prompt_id])
+
+            denominator = Decimal(1)
+            for word in test_str:
+                filter_df = Student_essays_prob.filter(Student_essays_prob['Words'] == word)
+                if not filter_df.is_empty():
+                    denominator = denominator * Decimal(filter_df[0,prompt_id+1])
+            denominator = denominator * Decimal(Student_probability[prompt_id])
+            denominator = numerator + denominator
+            
+            final_probability = numerator/denominator
+            
+            # Round to three decimal places using ROUND_HALF_UP rounding method
+            rounded_final_probability = final_probability.quantize(Decimal('1.0'), rounding=ROUND_HALF_UP)
+            return float(rounded_final_probability)
+        </code>
+    </pre>
+
+    <h2>Result File</h2>
+    
+    <img src="result.png" alt="Result File" style="max-width: auto; height: auto;">
+
+    <p>In the "generated1" column, my predicted values are stored, while in the "generated" column, the actual answers are stored.</p>
+    
+    <h2>Accuracy Calculation</h2>
+
+    <pre>
+        <code>
+           
+    miss_count = 0
+    for rows in joined_df.rows():
+        if rows[1] != float(rows[4]):
+            miss_count += 1
+    
+    accuracy = ((len(test_df)-miss_count)/len(test_df))*100
+             
+        </code>
+    </pre>
+
+    <p>I conducted a comparison between my predictions and the actual answers, calculating the instances where a match was not achieved with the actual answers. Among my predictions, only one row was inaccurately predicted. Consequently, I achieved a model accuracy of 99.76%.<br><br></p>
+
+    <h2>References</h2>
+
+    <p>[1] Main reference to the additional dataset —<br> &nbsp;&nbsp;
+        <a href="https://www.kaggle.com/datasets/radek1/llm-generated-essays/data">https://www.kaggle.com/datasets/radek1/llm-generated-essays/data</a><br><br> 
+        [2] Kaggle Competitions description —<br> &nbsp;&nbsp;
+        <a href="https://www.kaggle.com/competitions/llm-detect-ai-generated-text">https://www.kaggle.com/competitions/llm-detect-ai-generated-text</a><br><br> 
+        [3] Polars Documentation —<br> &nbsp;&nbsp;
+        <a href="https://pola-rs.github.io/polars/py-polars/html/reference/index.html">https://pola-rs.github.io/polars/py-polars/html/reference/index.html</a><br><br>
+
+    </p>
+
+    <h2>My Contribution</h2>
+
+    <p>I have independently developed this model from the ground up. It involves the classification of essays into two labels: LLM-generated or student-written. In addressing this task, I utilized the NLTK library along with modules such as Lemmatization, Stemming, WordNet, and Stopwords to preprocess the dataset, extracting meaningful words. Subsequently, I tokenized the words, counted the frequency of unique words, and stored the results in a DataFrame. Following this, I calculated the probability for each word, incorporating Laplace Smoothing in the Naive Bayes classifier, as discussed earlier. I applied these steps to the development dataset and calculated the accuracy for evaluation.</p>
+
+    <h2>Challenges and Solutions</h2>
+
+    <p><strong>Lemmatization:</strong> While applying lemmatization, I encountered an issue on Kaggle where the dataset did not automatically unzip. Consequently, I had to manually perform the unzipping process.<br>
+    !unzip /usr/share/nltk_data/corpora/wordnet.zip -d /usr/share/nltk_data/corpora/</p>
+
+    <p><strong>Multiplication of Small Terms </strong> In the Naive Bayes Classifier, the multiplication of numerous small terms can lead to a very small number, causing a loss of precision. To address this issue, I implemented the following code by importing decimal :<br>getcontext().prec = 20 <br><br>
+    I also multiplied the entire data frame by 10^5 after calculating the probability of each word. This adjustment prevents the occurrence of very small numbers during the multiplication calculations in the Naive Bayes theorem.</p>
+
+
+    <p>Find my raw Kaggle Notebook <a href="https://www.kaggle.com/code/meetshah6338/llmnotebook">here</a><br><br></p>
+
+    <!-- Bootstrap JavaScript dependencies -->
+    <script src="path/to/popper.min.js"></script>
+    <script src="path/to/bootstrap.min.js"></script>
+
 
 </body>
 
