@@ -17,20 +17,24 @@
 
         h1 {
             color: #3498db;
+            font-size: 38px;
         }
 
         h2 {
             color: #2ecc71;
+            font-size: 33px;
         }
 
         p {
             line-height: 1.6;
+            font-size: 22px;
         }
 
         code {
             background-color: #ecf0f1;
             padding: 2px 5px;
             border-radius: 3px;
+            font-size: 18px;
         }
 
         pre {
@@ -38,6 +42,13 @@
             padding: 10px;
             border-radius: 5px;
             overflow-x: auto;
+        }
+        
+        img{
+            width: 100%; 
+            height: auto; 
+            max-width: 500px;
+            
         }
     </style>
 </head>
@@ -232,17 +243,14 @@
 
     <h2>Challenges and Solutions</h2>
 
-    <p><strong>Lemmatization:</strong> During the experimentation phase with varying sizes of flower images, it became evident that the code encounters memory limitations when handling images with dimensions of 512x512 pixels, both on CPU and GPU. To address
-        this issue, it is imperative to leverage TPU (Tensor Processing Unit) for enhanced computational efficiency and the ability to handle larger image sizes without encountering memory constraints. The transition to TPU is recommended as a viable
-        solution to overcome the challenges posed by memory limitations during code execution.</p>
+    <p><strong>Lemmatization:</strong> While applying lemmatization, I encountered an issue on Kaggle where the dataset did not automatically unzip. Consequently, I had to manually perform the unzipping process.<br>
+    !unzip /usr/share/nltk_data/corpora/wordnet.zip -d /usr/share/nltk_data/corpora/</p>
 
-    <p><strong>MobileNetV2 model vs VGG16 model: </strong> Keras provides a selection of pretrained networks, commonly referred to as 'applications,' which can be readily downloaded and integrated into your project. Among these options, MobileNetV2 stands
-        out as a model specifically trained for image classification tasks. General view for implementation of MobileNetV2 model is <a href="https://pythontutorials.eu/deep-learning/image-classification/">here</a>. In my research, I explored the suitability
-        of two models, namely MobileNetV2 and VGG16, for the image classification task at hand.<br><br> The comparative analysis revealed that the MobileNetV2 model outperforms VGG16 in terms of efficiency. This observation aligns with existing research
-        findings, further substantiating the superior performance of MobileNetV2. For a more in-depth understanding of the efficacy comparison between these models, I refer to a specific <a href="Comparative Study of VGG16 and MobileNetV2 for Masked Face Recognition.pdf">research paper</a>        dedicated to this evaluation. The utilization of MobileNetV2 is recommended based on its demonstrated higher efficiency in image classification.</p>
+    <p><strong>Multiplication of Small Terms </strong> In the Naive Bayes Classifier, the multiplication of numerous small terms can lead to a very small number, causing a loss of precision. To address this issue, I implemented the following code by importing decimal :<br>getcontext().prec = 20 <br><br>
+    I also multiplied the entire data frame by 10^5 after calculating the probability of each word. This adjustment prevents the occurrence of very small numbers during the multiplication calculations in the Naive Bayes theorem.</p>
 
 
-    <p>Find my raw Kaggle Notebook <a href="https://www.kaggle.com/code/meetshah6338/petals-to-the-metals/notebook">here</a><br><br></p>
+    <p>Find my raw Kaggle Notebook <a href="https://www.kaggle.com/code/meetshah6338/llmnotebook">here</a><br><br></p>
 
     <!-- Bootstrap JavaScript dependencies -->
     <script src="path/to/popper.min.js"></script>
