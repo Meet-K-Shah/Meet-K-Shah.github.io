@@ -57,7 +57,7 @@
 
     <h1>Detecting LLM-Generated Texts</h1>
 
-    <img src="bayesian.png" alt="Bayesian" style="max-width: auto; height: auto;">
+    <img src="bayesian.png" alt="Bayesian">
 
 
     <h2>Building a Naive Bayes Classifier Model</h2>
@@ -91,7 +91,7 @@
         verbs, this often means converting them to their infinitive form, and for nouns, it involves reducing them to their singular form. For instance, the lemma of the word "running" would be "run," and the lemma of "mice" would be "mouse."
     </p>
 
-    <img src="lemmatization.png" alt="Lemmatization" style="max-width: auto; height: auto;">
+    <img src="lemmatization.png" alt="Lemmatization" style="max-width: 1000px;">
 
     <h2>Stemming.</h2>
 
@@ -100,7 +100,7 @@
         would be "cat."
     </p>
 
-    <img src="stemming.png" alt="Stemming" style="max-width: auto; height: auto;">
+    <img src="stemming.png" alt="Stemming" style="max-width: 1000px;">
 
 
     <p>Subsequently, I consolidated all the text from student-written essays and LLM (AI) generated essays separately. Then, I counted the frequency of each unique word and stored the results in a dataframe.</p>
@@ -156,11 +156,11 @@
     
     <p>Same for LLM essays dataset</p>
     
-    <img src="Student_essays.png" alt="Student Essays" style="max-width: auto; height: auto;">
+    <img src="Student_essays.png" alt="Student Essays">
     
     <h2>Naive Bayes Classifier</h2>
 
-    <img src="naive_bayes.png" alt="naive bayes classifier" style="max-width: auto; height: auto;">
+    <img src="naive_bayes.png" alt="naive bayes classifier">
     
     <p>The Naive Bayes Classifier is a probabilistic machine learning algorithm based on Bayes' theorem. It assumes independence between features, hence "naive." It's commonly used for classification tasks, such as spam filtering, sentiment analysis, and document categorization. The algorithm calculates the probability of a given instance belonging to a particular class and selects the class with the highest probability.</p>
     
@@ -170,7 +170,7 @@
 
     A solution to this predicament involves implementing the Laplace smoother. The Laplace smoother adds a small number to each of the counts in the frequencies for each feature, ensuring that each feature has a nonzero probability of occurring for each class. Typically, a value of one to two for the Laplace smoother is sufficient, but this constitutes a tuning parameter that should be considered and optimized through cross-validation.</p>
     
-    <img src="after_smoothing.png" alt="Student Essays" style="max-width: auto; height: auto;">
+    <img src="after_smoothing.png" alt="Student Essays">
     
     <p><strong>All the zero values are transformed to a non-zero value, ensuring that the entire multiplication term cannot be zero.</strong></p>
     
@@ -205,7 +205,7 @@
 
     <h2>Result File</h2>
     
-    <img src="result.png" alt="Result File" style="max-width: auto; height: auto;">
+    <img src="result.png" alt="Result File">
 
     <p>In the "generated1" column, my predicted values are stored, while in the "generated" column, the actual answers are stored.</p>
     
