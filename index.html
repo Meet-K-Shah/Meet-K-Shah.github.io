@@ -1,262 +1,293 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Homepage</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        .horizontal-container {
-            display: flex;
-            justify-content: space-between;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Homepage</title>
 
-        .division {
-            flex: 1;
-            padding: 20px;
-            margin: 10px;
-        }
-    </style>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+
+  <!-- Slick Slider CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+  <style>
+    .horizontal-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .division {
+      flex: 1;
+      padding: 20px;
+      margin: 10px;
+    }
+
+    .project-slider .project {
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 10px;
+      height: 100%;
+    }
+
+    .slick-slide {
+      margin: 0 10px;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      color: black;
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#"><b> Homepage </b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#project">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#highlights">Highlights</a></li>
+          <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#"> <b> Homepage </b> </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#education">Education</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#experience">Experience</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#project">Projects</a>
-                    </li>
+  <!-- First Section -->
+  <section id="first" class="text-center py-5">
+    <div class="container">
+      <h1>Meet Shah</h1>
+      <p>Data Analytical | Optimist Coder | Problem Solver</p>
+      <div class="icons">
+        &emsp;
+        <a href="https://www.linkedin.com/in/meetshah6338" target="_blank"><i class="fab fa-linkedin"></i></a> |
+        <a href="https://meet-k-shah.github.io/Meet Shah Data Scientist or Machine Learning Resume.pdf" download
+          target="_blank"><i class="far fa-file-pdf"></i></a> |
+        <a href="mailto:meetks143@gmail.com"><i class="far fa-envelope"></i></a>
+      </div>
+    </div>
+  </section>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#highlights">Highlights</a>
-                    </li>
+  <!-- About Section -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>
+        Motivated and detail-oriented Master's student in Computer Science with a strong foundation in machine learning,
+        deep learning, and statistical modeling. Experienced in developing predictive models, computer vision
+        solutions, and data-driven strategies to solve complex problems. Passionate about leveraging neural networks and
+        advanced analytics to drive impactful business decisions.
+      </p>
+    </div>
+  </section>
 
-		    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
-                </ul>
-            </div>
+  <!-- Experience Section -->
+  <section id="experience" class="py-5">
+    <div class="container">
+      <u>
+        <h2>Experience</h2>
+      </u><br />
+      <b>DataJr. Analytics, Elite Technocrats</b> – Gujarat, India &ensp; Jan 2023 – June 2023<br />
+      <b>Roles & Responsibilities:</b>
+      <p>
+        Tools Used: Python, Polars, FastAPI, Django, SQL, PostgreSQL<br />
+        • Engineered a Python-based automated trading application (.exe) to replace inefficient manual processes,
+        implementing real-time strategies that achieved <b>95% trade execution accuracy.</b> <br />
+        • Integrated real-time stock market APIs to enable <b>algorithmic trade execution and optimal position sizing,</b>
+        reducing delays from manual input. <br />
+        • Developed dynamic risk management algorithms that adjusted to high drawdowns, applying <b>position sizing and
+        stop-loss logic</b> to cut losses and strengthen <b>capital protection.</b> <br />
+        • Built real-time analytical dashboards that eliminated delays in trade insights, allowing users to <b>drill into
+        P&L, trade frequency, and risk metrics</b> for faster decision-making. <br />
+        • Refactored a monolithic Django codebase into a modular architecture, <b>isolating trading strategies into
+        separate functions</b> to boost execution efficiency, maintainability, and scalability. <br />
+        • Optimized backtesting engine performance by replacing Pandas with Polars, improving <b>data processing speed by
+        80%</b> and accelerating strategy evaluation cycles. <br />
+        • Automated parsing of <b>1M+ stock market records</b> from Jainam Company using Python, extracting key trade
+        parameters (symbols, expiry, CE/PE) into structured CSV and Feather files for <b>efficient analysis and reuse.</b>
+      </p>
+
+      <b>SRE, Covered by Sage</b> – Intern, Remote &ensp; July 2021 – Jan 2022<br />
+      <b>Roles & Responsibilities:</b>
+      <p>
+        Tools Used: Linux, Bash, AWS (S3, Lambda), Docker, Kubernetes, Terraform<br />
+        • Containerized applications using Docker, creating reusable images to enable <b>seamless, consistent deployments
+        across multiple environments.</b> <br />
+        • Managed AWS services (Routing, S3, Lambda) to <b>deploy scalable cloud resources,</b> improving application
+        <b>availability and performance.</b> <br />
+        • Streamlined CI/CD pipelines with YAML-based configurations, <b>boosting deployment reliability and reducing
+        manual errors.</b> <br />
+        • Implemented infrastructure-as-code by developing and managing YAML configurations, ensuring <b>repeatable,
+        automated provisioning of cloud resources.</b>
+      </p>
+    </div>
+  </section>
+
+  <!-- Project Section -->
+  <section id="project" class="py-5">
+    <div class="container">
+      <u><h2>Projects</h2></u><br />
+
+      <div class="project-slider">
+        <div class="project">
+          <b>Automated Reporting System with Excel and Python</b>
+          <p>
+            Developed an automated reporting system using Python and Pandas to extract, process, and generate
+            daily/weekly/monthly reports from SQL databases.<br />
+            Integrated the system with Excel for seamless report generation and email delivery to stakeholders.
+          </p>
         </div>
-    </nav>
 
-    <!-- First Section -->
-    <section id="first" class="text-center py-5">
-        <div class="container">
-            <h1> Meet Shah </h1>
-            <p> Data Analytical | Optimist Coder | Problem Solver</p>
-            
-            <div class="icons">
-                      &emsp; <a href="https://www.linkedin.com/in/meetshah6338" target="_blank" class="linkedin-icon"><i class="fab fa-linkedin"></i></a> |
-                      <a href="https://meet-k-shah.github.io/Meet Shah Data Scientist or Machine Learning Resume.pdf" download="Meet Shah's Resume.pdf" target="_blank" class="resume-icon"><i class="far fa-file-pdf"></i></a> |
-                      <a href="mailto:meetks143@gmail.com"><i class="far fa-envelope"></i></a>
-                  </div>
-            
-            
+        <div class="project">
+          <b>Predictive Analytics for Inventory Management</b>
+          <p>
+            Built predictive models using historical sales data to forecast demand trends and optimize stock levels,
+            reducing overstock and stockout situations by 25%.<br />
+            Designed and implemented PowerBI dashboards for inventory tracking and forecasting.
+          </p>
         </div>
-    </section>
 
-
-    <!-- About Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Motivated and detail-oriented Master's student in Computer Science with a strong foundation in machine learning, deep learning, and statistical modeling. Experienced in developing predictive models, computer vision solutions, and data-driven strategies to solve complex problems. Passionate about leveraging neural networks and advanced analytics to drive impactful business decisions. </p>
+        <div class="project">
+          <b>Customer Churn Prediction for a Telecom Company</b>
+          <p>
+            Analyzed customer data to identify patterns in churn behavior.<br />
+            Built and optimized machine learning models (Logistic Regression, Decision Trees, Random Forest) to predict
+            churn with 85% accuracy.<br />
+            Designed an interactive Tableau dashboard for real-time monitoring of churn rates.
+          </p>
         </div>
-    </section>
 
-
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-5">
-        <div class="container">
-            <u><h2>Experience</h2></u><br>
-            <b>DataJr.  Analytics,  Elite Technocrats </b> – Gujarat, India &ensp; Jan 2023 – June 2023 <br>
-            <b>Roles & Responsibilities:</b>
-            <p>
-                Tools Used: Python, Polars, FastAPI, Django, SQL, PostgreSQL  <br>
-				• Engineered a Python-based automated trading application (.exe) to replace inefficient manual processes, implementing real-time strategies that achieved 95% trade execution accuracy. <br>
-				• Integrated real-time stock market APIs to enable algorithmic trade execution and optimal position sizing, reducing delays from manual input. <br>
-				• Developed dynamic risk management algorithms that adjusted to high drawdowns, applying position sizing and stop-loss logic to cut losses and strengthen capital protection. <br>
-				• Built real-time analytical dashboards that eliminated delays in trade insights, allowing users to drill into P&L, trade frequency, and risk metrics for faster decision-making. <br>
-				• Refactored a monolithic Django codebase into a modular architecture, isolating trading strategies into separate functions to boost execution efficiency, maintainability, and scalability. <br>
-				• Optimized backtesting engine performance by replacing Pandas with Polars, improving data processing speed by 80% and accelerating strategy evaluation cycles. <br>
-				• Automated parsing of 1M+ stock market records from Jainam Company using Python, extracting key trade parameters (symbols, expiry, CE/PE) into structured CSV and Feather files for efficient analysis and reuse.
-
-            </p>
-
-            <b>SRE,  Covered by Sage </b> – Intern, Remote-Work &emsp; July 2021 – Jan 2022<br>
-            <b>Roles & Responsibilities:</b>
-            <p>
-               Tools Used: Linux, Bash, AWS (S3, lambda), Docker, Kubernetes, Terraform <br>
-				• Containerized applications using Docker, creating reusable images to enable seamless, consistent deployments across multiple environments. <br>
-				• Managed AWS services (Routing, S3, Lambda) to deploy scalable cloud resources, improving application availability and performance. <br>
-				• Streamlined CI/CD pipelines with YAML-based configurations, boosting deployment reliability and reducing manual errors. <br>
-				• Implemented infrastructure-as-code by developing and managing YAML configurations, ensuring repeatable, automated provisioning of cloud resources.
-            </p>
+        <div class="project">
+          <b>Image Stitching (Panorama Effect)</b>
+          <p>
+            It can combine the segments of different similar images into one big picture as our camera has a limitation
+            to capture an image till some point which can be accomplished by this function.
+          </p>
         </div>
-    </section>
 
-
-
-
-	    <!-- Project Section -->
-    <section id="project" class="py-5">
-        <div class="container">
-            <u> <h2>Projects</h2> </u><br>
-	    <b>Automated Reporting System with Excel and Python </b>
-            <p>
-                Developed an automated reporting system using Python and Pandas to extract, process, and generate daily/weekly/monthly reports from SQL databases.  <br>
-
-		Integrated the system with Excel for seamless report generation and email delivery to stakeholders. 
-            </p>
-
-	    <b>Predictive Analytics for Inventory Management </b>
-            <p>
-                Built predictive models using historical sales data to forecast demand trends and optimize stock levels, reducing overstock and stockout situations by 25%.  <br>
-
-		Designed and implemented PowerBI dashboards for inventory tracking and forecasting. 
-            </p>
-
-	    <b>Customer Churn Prediction for a Telecom Company </b>
-            <p>
-                Analyzed customer data to identify patterns in churn behavior.  <br>
-
-		Built and optimized machine learning models (Logistic Regression, Decision Trees, Random Forest) to predict churn with 85% accuracy.  <br>
-
-		Designed an interactive Tableau dashboard for real-time monitoring of churn rates. 
-            </p>
-		
-            <b>Image Stitching (Panorama Effect)</b>
-            <p>
-                It can combine the segments of different similar images into one big picture as our camera has a limitation to capture an image till some point which can be accomplished by this function.
-            </p>
-
-            <b>Chat Bot (Python | Neural Network | NLP) </b>
-            <p>
-                In this project, Chat-bot can detect similar sets of questions which is in a different format and gives the proper answer to an individual question from users. This bot only gives the details about my university admission, hostel and canteen facilities.
-            </p>
-
-            <b>Face Landmarks (Using Python) </b>
-            <p>
-                It detects a face of a person and creates a point (68 points in total) on boundary of eyes, lips, nose, and face.
-            </p>
-
-
-            <b>Q/A NLP Based System (Python | NLP)</b>
-            <p>
-                Question Answering System in which users have to pass a passage and questions and algorithms finds out the answers from the given passage.
-            </p>
-
+        <div class="project">
+          <b>Chat Bot (Python | Neural Network | NLP)</b>
+          <p>
+            In this project, Chat-bot can detect similar sets of questions which is in a different format and gives the
+            proper answer to an individual question from users. This bot only gives the details about my university
+            admission, hostel and canteen facilities.
+          </p>
         </div>
-    </section>
 
-
-
-
-
-	
-
-	
-
-	    <!-- Education Section -->
-    <section id="education" class="py-5">
-        <div class="container">
-            <u><h2>Education</h2></u><br>
-            <b>The University of Texas at Arlington (UTA) </b> – Texas, USA &emsp; 2023 – 2025 <br>
-             <p>Candidate for M.S. in Computer and Informational Sciences </p> <br>
-            <b>P P Savani University (PPSU) </b> – Gujarat, India &emsp; 2018 – 2022<br>
-            <p>Candidate for B.E. in Compuer Engineering</p>
+        <div class="project">
+          <b>Face Landmarks (Using Python)</b>
+          <p>
+            It detects a face of a person and creates a point (68 points in total) on boundary of eyes, lips, nose, and
+            face.
+          </p>
         </div>
-    </section>
 
-
-
-
-	
-    
-       <!-- Technical Skills Section -->
-    <section id="skills" class="py-5">
-        <div class="container">
-            <u><h2>Skills</h2></u><br>
-            <p>
-<b>Programming Languages</b>: Python, SQL <br>
-
-<b>Frameworks & Libraries:</b> Numpy, Pandas, Matplotlib, Seaborn, Scikit-Learn, Pytorch, TensorFlow, Keras, Hugging Face <br>
-
-<b>Data Engineering:</b> ETL Development, Data Pipelines, SQL Server, Databases (MySQL, PostgreSQL, MongoDB) <br>
-
-<b>Machine Learning & Algorithms:</b> Supervised & Unsupervised Learning, Decision Trees, Naive Bayes, Neural Networks, Deep Learning, NLP, Transformers, CNN, RNN, LSTM <br>  
-
-<b>Cloud & DevOps Tech Stack:</b> AWS (S3, EC2, Lambda), Docker, Kubernetes, Terraform <br>
-
-<b>Analytics Tools:</b> PowerBI, Tableau, Apache Spark (PySpark, Spark SQL), Apache Hadoop (HDFS) <br>
-
-<b>Others:</b> Data Visualization, Exploratory Data Analysis <br>
-
-<b>Non-Technical skills:</b> Client-facing consulting experience, Requirement gathering and analysis, Off-shore team management 
-            </p>
+        <div class="project">
+          <b>Q/A NLP Based System (Python | NLP)</b>
+          <p>
+            Question Answering System in which users have to pass a passage and questions and algorithms finds out the
+            answers from the given passage.
+          </p>
         </div>
-    </section> 
+      </div>
+    </div>
+  </section>
 
+  <!-- Education Section -->
+  <section id="education" class="py-5">
+    <div class="container">
+      <u><h2>Education</h2></u><br />
+      <b>The University of Texas at Arlington (UTA)</b> – Texas, USA &ensp; 2023 – 2025<br />
+      <p>Candidate for M.S. in Computer and Informational Sciences</p><br />
+      <b>P P Savani University (PPSU)</b> – Gujarat, India &ensp; 2018 – 2022<br />
+      <p>Candidate for B.E. in Computer Engineering</p>
+    </div>
+  </section>
 
+  <!-- Skills Section -->
+  <section id="skills" class="py-5">
+    <div class="container">
+      <u><h2>Skills</h2></u><br />
+      <p>
+        <b>Programming Languages:</b> Python, SQL<br />
+        <b>Frameworks & Libraries:</b> Numpy, Pandas, Matplotlib, Seaborn, Scikit-Learn, Pytorch, TensorFlow, Keras,
+        Hugging Face<br />
+        <b>Data Engineering:</b> ETL Development, Data Pipelines, SQL Server, MySQL, PostgreSQL, MongoDB<br />
+        <b>Machine Learning:</b> Supervised & Unsupervised Learning, Decision Trees, Naive Bayes, Neural Networks, Deep
+        Learning, NLP, Transformers, CNN, RNN, LSTM<br />
+        <b>Cloud & DevOps:</b> AWS, Docker, Kubernetes, Terraform<br />
+        <b>Analytics Tools:</b> PowerBI, Tableau, Apache Spark (PySpark, Spark SQL), Hadoop<br />
+        <b>Others:</b> Data Visualization, EDA<br />
+        <b>Non-Technical:</b> Client-facing consulting, Requirement gathering, Off-shore team management
+      </p>
+    </div>
+  </section>
 
-    <!-- Carrer Highlights Section -->
-    <section id="highlights" class="py-5">
-        <div class="container">
-            <u><h2>Carrer Highlights</h2></u><br>
-            <p>
-                • Won 2nd price in Blind coding event in tech fest at P P Savani University. <br> • Won first place in the intra-college Table Tennis tournament at the University<br>
-            </p>
-        </div>
-    </section>
+  <!-- Career Highlights -->
+  <section id="highlights" class="py-5">
+    <div class="container">
+      <u><h2>Career Highlights</h2></u><br />
+      <p>
+        • Won 2nd prize in Blind Coding event at PPSU Tech Fest<br />
+        • Won 1st place in intra-college Table Tennis tournament
+      </p>
+    </div>
+  </section>
 
+  <!-- Blog Section -->
+  <section id="blog" class="py-5">
+    <div class="container">
+      <u><h2>Blogs</h2></u><br />
+      <p><a href="https://meet-k-shah.github.io/TitanicNotebook/">Titanic Blog</a></p>
+      <p><a href="https://meet-k-shah.github.io/PetalToTheMetalsNotebook/">Petals To The Metals</a></p>
+      <p><a href="https://meet-k-shah.github.io/LLMNotebook/">LLM (AI) Text Detector</a></p>
+    </div>
+  </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="py-5">
-        <div class="container">
-            <u> <h2>Blogs</h2> </u><br
-					   
-            <p>
-                <a href="https://meet-k-shah.github.io/TitanicNotebook/"> Titanic Blog </a>
-            </p>
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
-	    <p>
-                <a href="https://meet-k-shah.github.io/PetalToTheMetalsNotebook/"> Petals To The Metals - Flower Classifications </a>
-            </p>
-
-	    <p>
-                <a href="https://meet-k-shah.github.io/LLMNotebook/"> LLM (AI) text detector </a>
-            </p>
-
-        </div>
-    </section>	
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
+  <script>
+    $(document).ready(function () {
+      $('.project-slider').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        dots: true,
+        arrows: true,
+        infinite: false,
+        responsive: [
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1
+            }
+          }
+        ]
+      });
+    });
+  </script>
 </body>
 
 </html>
