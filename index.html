@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creative Homepage</title>
+  <title>Meet Shah Portfolio</title>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
@@ -12,6 +12,9 @@
   <!-- Slick Slider CSS -->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+  <!-- Font Awesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
   <style>
     .horizontal-container {
@@ -41,19 +44,42 @@
     .slick-next:before {
       color: black;
     }
+
+    /* Timeline Styling */
+    .timeline {
+      border-left: 3px solid #0d6efd;
+      padding-left: 30px;
+      margin-left: 10px;
+      position: relative;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      background: #0d6efd;
+      border-radius: 50%;
+    }
   </style>
 </head>
 
 <body>
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand" href="#"><b> Homepage </b></a>
+      <a class="navbar-brand fw-bold" href="#">Meet Shah</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
           <li class="nav-item"><a class="nav-link" href="#project">Projects</a></li>
@@ -74,8 +100,8 @@
       <div class="icons">
         &emsp;
         <a href="https://www.linkedin.com/in/meetshah6338" target="_blank"><i class="fab fa-linkedin"></i></a> |
-        <a href="https://meet-k-shah.github.io/MeetShah_Resume.pdf" download
-          target="_blank"><i class="far fa-file-pdf"></i></a> |
+        <a href="https://meet-k-shah.github.io/MeetShah_Resume.pdf" download target="_blank"><i
+            class="far fa-file-pdf"></i></a> |
         <a href="mailto:meetks143@gmail.com"><i class="far fa-envelope"></i></a>
       </div>
     </div>
@@ -95,74 +121,80 @@
   </section>
 
   <!-- Experience Section -->
-<section id="experience" class="py-5">
-  <div class="container">
-    <u><h2>Experience</h2></u><br />
+  <section id="experience" class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center fw-bold">Experience</h2>
 
-    <!-- Prime Cargo People Logistic -->
-    <div class="d-flex justify-content-between flex-wrap">
-      <div><b>Data Analyst, Prime Cargo People Logistic</b> – New Jersey, USA</div>
-      <div>Jul 2025 – Present</div>
+      <div class="timeline">
+
+        <!-- Prime Cargo -->
+        <div class="timeline-item mb-5">
+          <h5 class="fw-bold">Data Analyst – Prime Cargo People Logistic</h5>
+          <span class="text-muted">Jul 2025 – Present | New Jersey, USA</span>
+          <ul class="mt-2">
+            <li>Processed and analyzed <b>shipment and freight data</b> using Python and SQL, identifying cost trends and
+              improving reporting accuracy.</li>
+            <li>Designed <b>Power BI dashboards</b> for shipment delays, warehouse utilization, and carrier performance,
+              reducing manual reporting time by <b>40%</b>.</li>
+            <li>Built and optimized <b>ETL workflows</b> to integrate customs and logistics data into PostgreSQL,
+              ensuring clean and reliable datasets.</li>
+          </ul>
+        </div>
+
+        <!-- Elite Technocrats -->
+        <div class="timeline-item mb-5">
+          <h5 class="fw-bold">Junior Data Analyst – Elite Technocrats</h5>
+          <span class="text-muted">Jan 2023 – Jun 2023 | Gujarat, India</span>
+          <ul class="mt-2">
+            <li>Engineered a Python-based automated trading application (.exe) achieving <b>95% trade execution
+                accuracy</b>.</li>
+            <li>Integrated <b>real-time stock market APIs</b> with SQL-backed extraction for faster trade execution and
+              accurate position sizing.</li>
+            <li>Developed <b>risk management algorithms</b> with statistical analysis, stop-loss logic, and capital
+              protection strategies.</li>
+            <li>Built <b>real-time dashboards</b> to monitor P&L, trade frequency, and risk metrics for faster
+              decision-making.</li>
+            <li>Refactored monolithic Django code into modular functions for <b>efficiency and scalability</b>.</li>
+            <li>Optimized backtesting engine using Polars, improving data processing speed by <b>80%</b>.</li>
+            <li>Automated parsing of <b>1M+ stock market records</b> into structured CSV and Feather files.</li>
+          </ul>
+        </div>
+
+        <!-- Renegade Insurance -->
+        <div class="timeline-item mb-5">
+          <h5 class="fw-bold">Site Reliability Engineer (Intern) – Renegade Insurance</h5>
+          <span class="text-muted">Jul 2021 – Jan 2022 | Oregon, USA (Remote)</span>
+          <ul class="mt-2">
+            <li>Containerized applications with <b>Docker</b> for consistent deployments.</li>
+            <li>Managed <b>AWS services</b> (Routing, S3, Lambda) to deploy scalable cloud resources.</li>
+            <li>Streamlined <b>CI/CD pipelines</b> with YAML configurations, reducing manual errors.</li>
+            <li>Created and managed <b>infrastructure-as-code</b> within Microsoft services for automated provisioning.
+            </li>
+          </ul>
+        </div>
+
+        <!-- P P Savani University -->
+        <div class="timeline-item mb-5">
+          <h5 class="fw-bold">Data Analyst – P P Savani University</h5>
+          <span class="text-muted">Dec 2021 – Apr 2022 | Gujarat, India</span>
+          <ul class="mt-2">
+            <li>Built a <b>Gujarati Question Answering system</b> with ML techniques for data collection, preprocessing,
+              and relation extraction.</li>
+            <li>Improved question processing accuracy by <b>5%</b> using IndoWordNet API tokenization and text analysis
+              tools.</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
-    <p>
-      • Processed and analyzed <b>shipment and freight data</b> using Python and SQL, identifying <b>cost trends</b> and improving <b>reporting accuracy</b>.<br />
-      • Designed <b>Power BI dashboards</b> to visualize <b>shipment delays, warehouse utilization, and carrier performance</b>, reducing manual reporting time by <b>40%</b>.<br />
-      • Built and optimized <b>ETL workflows</b> to integrate <b>customs and logistics data</b> into PostgreSQL, ensuring <b>clean and reliable datasets</b> for analysis.<br />
-    </p>
-
-    <!-- Elite Technocrats -->
-    <div class="d-flex justify-content-between flex-wrap">
-      <div><b>Junior Data Analyst, Elite Technocrats</b> – Gujarat, India</div>
-      <div>Jan 2023 – Jun 2023</div>
-    </div>
-    <p>
-      • Engineered a Python-based automated trading application (.exe) to replace inefficient manual processes,
-        implementing real-time strategies that achieved <b>95% trade execution accuracy.</b> <br />
-        • Integrated real-time stock market APIs with robust <b>SQL-backed data extraction</b> to enable faster 
-        algorithmic trade execution and accurate <b>position sizing</b>, significantly reducing delays and errors 
-        from manual input.<br />
-        • Developed dynamic <b>risk management algorithms</b> leveraging <b>statistical analysis</b> and data storytelling 
-        to adjust for high drawdowns, applying position sizing and <b>stop-loss logic</b> to cut losses and enhance 
-        <b>capital protection</b>. <br />
-        • Built real-time analytical dashboards that eliminated delays in trade insights, allowing users to <b>drill into
-        P&L, trade frequency, and risk metrics</b> for faster decision-making. <br />
-        • Refactored a monolithic Django codebase into a modular architecture, <b>isolating trading strategies into
-        separate functions</b> to boost execution efficiency, maintainability, and scalability. <br />
-        • Optimized backtesting engine performance by replacing Pandas with Polars, improving <b>data processing speed by
-        80%</b> and accelerating strategy evaluation cycles. <br />
-        • Automated parsing of <b>1M+ stock market records</b> from Jainam Company using Python, extracting key trade
-        parameters (symbols, expiry, CE/PE) into structured CSV and Feather files for <b>efficient analysis and reuse.</b> <br />
-    </p>
-
-    <!-- Renegade Insurance -->
-    <div class="d-flex justify-content-between flex-wrap">
-      <div><b>Site Reliability Engineer (Intern), Renegade Insurance</b> – Oregon,USA (Remote)</div>
-      <div>Jul 2021 – Jan 2022</div>
-    </div>
-    <p>
-      • Containerized applications using <b>Docker</b>, creating reusable images for <b>consistent deployments</b>.<br />
-      • Managed <b>AWS services</b> (Routing, S3, Lambda) to deploy <b>scalable cloud resources</b>, improving application <b>availability and performance</b>.<br />
-      • Streamlined <b>CI/CD pipelines</b> with <b>YAML-based configurations</b>, reducing manual errors.<br />
-      • Created and managed <b>infrastructure-as-code</b> using <b>YAML files</b> within Microsoft services for automated provisioning.<br />
-    </p>
-
-    <!-- P P Savani University -->
-    <div class="d-flex justify-content-between flex-wrap">
-      <div><b>Data Analyst, P P Savani University</b> – Gujarat, India</div>
-      <div>Dec 2021 – Apr 2022</div>
-    </div>
-    <p>
-      • Built a <b>Gujarati Question Answering system</b> using ML techniques for <b>data collection, preprocessing, and relation extraction</b>.<br />
-      • Improved question processing accuracy by <b>5%</b> using <b>IndoWordNet API tokenization</b> and text analysis tools like <b>bag-of-words</b> and <b>count vectorizers</b>.<br />
-    </p>
-  </div>
-</section>
-
+  </section>
 
   <!-- Project Section -->
   <section id="project" class="py-5">
     <div class="container">
-      <u><h2>Projects</h2></u><br />
+      <u>
+        <h2>Projects</h2>
+      </u><br />
 
       <div class="project-slider">
         <div class="project">
@@ -232,10 +264,12 @@
   <!-- Education Section -->
   <section id="education" class="py-5">
     <div class="container">
-      <u><h2>Education</h2></u><br />
+      <u>
+        <h2>Education</h2>
+      </u><br />
       <b>The University of Texas at Arlington (UTA)</b> – Texas, USA &ensp; 2023 – 2025<br />
       <p>M.S. in Computer and Informational Sciences <br />
-      Additional Certificates: Big Data Management and Data Science, and Deep Learning</p>
+        Additional Certificates: Big Data Management and Data Science, and Deep Learning</p>
       <b>P P Savani University (PPSU)</b> – Gujarat, India &ensp; 2018 – 2022<br />
       <p>B.Tech in Computer Engineering</p>
     </div>
@@ -244,7 +278,9 @@
   <!-- Skills Section -->
   <section id="skills" class="py-5">
     <div class="container">
-      <u><h2>Skills</h2></u><br />
+      <u>
+        <h2>Skills</h2>
+      </u><br />
       <p>
         <b>Programming Languages:</b> Python, SQL<br />
         <b>Frameworks & Libraries:</b> Numpy, Pandas, Matplotlib, Seaborn, Scikit-Learn, Pytorch, TensorFlow, Keras,
@@ -254,7 +290,8 @@
         Learning, NLP, Transformers, CNN, RNN, LSTM<br />
         <b>Cloud & DevOps:</b> AWS, Docker, Kubernetes, Terraform<br />
         <b>Analytics Tools:</b> PowerBI, Tableau, Apache Spark (PySpark, Spark SQL), Hadoop<br />
-        <b>Others:</b> Exploratory Data Analysis, Data Visualization, Machine Learning, Statistical Knowledge, Data Storytelling <br />
+        <b>Others:</b> Exploratory Data Analysis, Data Visualization, Machine Learning, Statistical Knowledge, Data
+        Storytelling <br />
         <b>Non-Technical:</b> Client-facing consulting, Requirement gathering, Off-shore team management
       </p>
     </div>
@@ -263,7 +300,9 @@
   <!-- Career Highlights -->
   <section id="highlights" class="py-5">
     <div class="container">
-      <u><h2>Career Highlights</h2></u><br />
+      <u>
+        <h2>Career Highlights</h2>
+      </u><br />
       <p>
         • Won 2nd prize in Blind Coding event at PPSU Tech Fest<br />
         • Won 1st place in intra-college Table Tennis tournament
@@ -274,7 +313,9 @@
   <!-- Blog Section -->
   <section id="blog" class="py-5">
     <div class="container">
-      <u><h2>Blogs</h2></u><br />
+      <u>
+        <h2>Blogs</h2>
+      </u><br />
       <p><a href="https://meet-k-shah.github.io/TitanicNotebook/">Titanic Blog</a></p>
       <p><a href="https://meet-k-shah.github.io/PetalToTheMetalsNotebook/">Petals To The Metals</a></p>
       <p><a href="https://meet-k-shah.github.io/LLMNotebook/">LLM (AI) Text Detector</a></p>
@@ -285,7 +326,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
   <script>
     $(document).ready(function () {
