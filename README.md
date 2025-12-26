@@ -1,7 +1,7 @@
 # Meet Shah – Portfolio
 
 This repository contains my personal portfolio website.  
-It is a simple site to introduce who I am, what I do, and to share some of my work and experience.[web:58]
+It is a simple site to introduce who I am, what I do, and to share some of my work and experience.
 
 The portfolio includes:
 
